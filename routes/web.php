@@ -29,4 +29,17 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
 
     Route::get('new-password','ResetPasswordController@newPassword')->name('get.new_password');
     Route::post('new-password','ResetPasswordController@savePassword');
+
+    Route::get('/{social}/redirect', 'SocialAuthController@redirect')->name('get.login.social');
+    Route::get('/{social}/callback', 'SocialAuthController@callback')->name('get.login.social_callback');
 });
+
+// Login admin
+Route::group(['prefix' => 'admin-auth','namespace' => 'Admin\Auth'], function() {
+    Route::get('login','AdminLoginController@getLoginAdmin')->name('get.login.admin');
+    Route::post('login','AdminLoginController@postLoginAdmin');
+
+    Route::get('logout','AdminLoginController@getLogoutAdmin')->name('get.logout.admin');
+});
+
+include 'route_api.php';
