@@ -30,3 +30,4 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
     Route::get('new-password','ResetPasswordController@newPassword')->name('get.new_password');
     Route::post('new-password','ResetPasswordController@savePassword');
 });
+include 'route_api.php';
