@@ -34,3 +34,12 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
     Route::get('/{social}/callback', 'SocialAuthController@callback')->name('get.login.social_callback');
 });
 
+Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'check_admin_login'], function() {
+    Route::group(['prefix' => 'transaction'], function(){
+        Route::get('','AdminTransactionController@index')->name('admin.transaction.index');
+        Route::get('delete/{id}','AdminTransactionController@delete')->name('admin.transaction.delete');
+        Route::get('order-delete/{id}','AdminTransactionController@deleteOrderItem')->name('ajax_admin.transaction.order_item');
+        Route::get('view-transaction/{id}','AdminTransactionController@getTransactionDetail')->name('ajax.admin.transaction.detail');
+        Route::get('action/{action}/{id}','AdminTransactionController@getAction')->name('admin.action.transaction');
+    });
+});
