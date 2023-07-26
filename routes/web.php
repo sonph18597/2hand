@@ -29,5 +29,8 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
 
     Route::get('new-password','ResetPasswordController@newPassword')->name('get.new_password');
     Route::post('new-password','ResetPasswordController@savePassword');
+
+    Route::get('/{social}/redirect', 'SocialAuthController@redirect')->name('get.login.social');
+    Route::get('/{social}/callback', 'SocialAuthController@callback')->name('get.login.social_callback');
 });
-include 'route_api.php';
+
