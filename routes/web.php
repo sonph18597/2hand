@@ -33,4 +33,6 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
     Route::get('/{social}/redirect', 'SocialAuthController@redirect')->name('get.login.social');
     Route::get('/{social}/callback', 'SocialAuthController@callback')->name('get.login.social_callback');
 });
-
+Route::group(['namespace' => 'Frontend'], function() {
+    Route::get('/','HomeController@index')->name('get.home');
+});
