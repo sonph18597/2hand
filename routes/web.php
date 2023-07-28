@@ -43,3 +43,7 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('action/{action}/{id}','AdminTransactionController@getAction')->name('admin.action.transaction');
     });
 });
+
+Route::group(['namespace' => 'Frontend'], function() {
+    Route::get('/','HomeController@index')->name('get.home');
+});
