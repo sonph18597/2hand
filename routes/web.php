@@ -35,4 +35,8 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
 });
 Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/','HomeController@index')->name('get.home');
+    Route::get('san-pham','ProductController@index')->name('get.product.list');
+    Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category.list');
+    Route::get('san-pham/{slug}','ProductDetailController@getProductDetail')->name('get.product.detail');
+    Route::get('san-pham/{slug}/danh-gia','ProductDetailController@getListRatingProduct')->name('get.product.rating_list');
 });
