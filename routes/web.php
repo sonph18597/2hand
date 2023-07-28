@@ -35,6 +35,20 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
 });
 
 Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'check_admin_login'], function() {
+    Route::group(['prefix' => 'product'], function(){
+        Route::get('','AdminProductController@index')->name('admin.product.index');
+        Route::get('create','AdminProductController@create')->name('admin.product.create');
+        Route::post('create','AdminProductController@store');
+
+        Route::get('hot/{id}','AdminProductController@hot')->name('admin.product.hot');
+        Route::get('active/{id}','AdminProductController@active')->name('admin.product.active');
+        Route::get('update/{id}','AdminProductController@edit')->name('admin.product.update');
+        Route::post('update/{id}','AdminProductController@update');
+
+        Route::get('delete/{id}','AdminProductController@delete')->name('admin.product.delete');
+        Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.product.delete_image');
+    });
+
     Route::group(['prefix' => 'transaction'], function(){
         Route::get('','AdminTransactionController@index')->name('admin.transaction.index');
         Route::get('delete/{id}','AdminTransactionController@delete')->name('admin.transaction.delete');
