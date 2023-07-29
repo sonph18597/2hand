@@ -64,4 +64,12 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('danh-muc/{slug}','CategoryController@index')->name('get.category.list');
     Route::get('san-pham/{slug}','ProductDetailController@getProductDetail')->name('get.product.detail');
     Route::get('san-pham/{slug}/danh-gia','ProductDetailController@getListRatingProduct')->name('get.product.rating_list');
+
+     // GIỏ hàng
+     Route::get('don-hang','ShoppingCartController@index')->name('get.shopping.list');
+     Route::prefix('shopping')->group(function () {
+         Route::get('add/{id}','ShoppingCartController@add')->name('get.shopping.add');
+         Route::get('delete/{id}','ShoppingCartController@delete')->name('get.shopping.delete');
+         Route::get('update/{id}','ShoppingCartController@update')->name('ajax_get.shopping.update');
+     });
 });
