@@ -64,7 +64,12 @@ class AdminProducerController extends Controller
      */
     public function edit($id)
     {
-
+        //
+        $producer = Producer::find($id);
+        if (!$producer) {
+            return redirect()->back();
+        }
+        return view('admin.producer.update', compact('producer'));
     }
 
     /**
@@ -76,7 +81,13 @@ class AdminProducerController extends Controller
      */
     public function update(AdminProducerRequest $request, $id)
     {
-
+        //
+        $producer = Producer::find($id);
+        $data               = $request->except('_token');
+        $data['pdr_slug']   = Str::slug($request->pdr_name);
+        $data['updated_at'] = Carbon::now();
+        $producer->update($data);
+        return redirect()->back();
     }
 
     /**
