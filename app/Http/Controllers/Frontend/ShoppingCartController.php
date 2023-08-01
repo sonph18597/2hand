@@ -166,4 +166,56 @@ class ShoppingCartController extends Controller
             ]);
         }
     }
+
+      /**
+     *  Xoá sản phẩm đơn hang
+     * */
+    public function delete(Request $request, $rowId)
+    {
+        if ($request->ajax())
+        {
+            \Cart::remove($rowId);
+            return response([
+                'totalMoney' => \Cart::subtotal(0),
+                'type'       => 'success',
+                'message'    => 'Xoá sản phẩm khỏi đơn hàng thành công'
+            ]);
+        }
+    }
+
+      // xu ly phan giam gia
+      public function cartDiscount(Request $request)
+      {
+          if ($request->ajax())
+          {
+              $discount = DiscountCode::where('d_code', $request->discount_code)->first();
+  
+              if ($discount->d_number_code == 0) {
+                  return response([
+                      'totalMoney' => \Cart::subtotal(0),
+                      'type'       => 'errors',
+                      'message'    => 'Số lượng mã giảm giá đã hết'
+                  ]);
+              }
+  
+              \Cart::setGlobalDiscount($discount->d_percentage);
+              $discountCode = DiscountCode::find($discount->id);
+              $discountCode->d_number_code = $discount->d_number_code - 1;
+              $discountCode->save();
+  
+              return response([
+                  'totalMoney' => \Cart::subtotal(0),
+                  'type'       => 'success',
+                  'message'    => ''
+              ]);
+          }
+      }
+
+         // kiem tra thoi gian giam gia
+    public function checkTimeDiscount($dateThi) {
+        $currentTime = Carbon::now();
+        $datetime = new Carbon($dateThi);
+        $checkTimeBDThi = Carbon::parse($currentTime)->diffInMinutes($datetime, false);
+        return $checkTimeBDThi;
+    }
 }
