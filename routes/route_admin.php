@@ -51,7 +51,16 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.product.delete_image');
     });
 
+    Route::group(['prefix' => 'producer'], function(){
+        Route::get('','AdminProducerController@index')->name('admin.producer.index');
+        Route::get('create','AdminProducerController@create')->name('admin.producer.create');
+        Route::post('create','AdminProducerController@store');
 
+        Route::get('update/{id}','AdminProducerController@edit')->name('admin.producer.update');
+        Route::post('update/{id}','AdminProducerController@update');
+
+        Route::get('delete/{id}','AdminProducerController@delete')->name('admin.producer.delete');
+    });
 
 
 
