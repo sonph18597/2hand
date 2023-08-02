@@ -51,6 +51,19 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.product.delete_image');
     });
 
+    Route::group(['prefix' => 'attribute'], function(){
+        Route::get('','AdminAttributeController@index')->name('admin.attribute.index');
+        Route::get('create','AdminAttributeController@create')->name('admin.attribute.create');
+        Route::post('create','AdminAttributeController@store');
+
+        Route::get('update/{id}','AdminAttributeController@edit')->name('admin.attribute.update');
+        Route::post('update/{id}','AdminAttributeController@update');
+        Route::get('hot/{id}','AdminAttributeController@hot')->name('admin.attribute.hot');
+
+        Route::get('delete/{id}','AdminAttributeController@delete')->name('admin.attribute.delete');
+
+    });
+    
     Route::group(['prefix' => 'producer'], function(){
         Route::get('','AdminProducerController@index')->name('admin.producer.index');
         Route::get('create','AdminProducerController@create')->name('admin.producer.create');
@@ -61,7 +74,7 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
         Route::get('delete/{id}','AdminProducerController@delete')->name('admin.producer.delete');
     });
-
+    
 
 
 
