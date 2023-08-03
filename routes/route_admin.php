@@ -50,6 +50,18 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('delete/{id}','AdminProductController@delete')->name('admin.product.delete');
         Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.product.delete_image');
     });
+    Route::group(['prefix' => 'menu'], function(){
+        Route::get('','AdminMenuController@index')->name('admin.menu.index');
+        Route::get('create','AdminMenuController@create')->name('admin.menu.create');
+        Route::post('create','AdminMenuController@store');
+
+        Route::get('update/{id}','AdminMenuController@edit')->name('admin.menu.update');
+        Route::post('update/{id}','AdminMenuController@update');
+
+        Route::get('active/{id}','AdminMenuController@active')->name('admin.menu.active');
+        Route::get('hot/{id}','AdminMenuController@hot')->name('admin.menu.hot');
+        Route::get('delete/{id}','AdminMenuController@delete')->name('admin.menu.delete');
+    });
 
     Route::group(['prefix' => 'attribute'], function(){
         Route::get('','AdminAttributeController@index')->name('admin.attribute.index');
