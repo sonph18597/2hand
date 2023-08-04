@@ -2,30 +2,39 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Producer;
-use App\Http\Requests\AdminProducerRequest;
-use Illuminate\Support\Str;
+use App\Http\Requests\AdminRequestKeyword;
+use App\Models\Keyword;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class AdminProducerController extends Controller
+class AdminKeywordController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index()
     {
-        //
-        $producers = Producer::orderByDesc('id')
-            ->paginate(10);
+        $keywords = Keyword::paginate(10);
+
         $viewData = [
-            'producers' => $producers,
-            'query'      => $request->query()
+            'keywords' => $keywords
         ];
-        return view('admin.producer.index', $viewData);
+
+        return view('admin.keyword.index', $viewData);
+    }
+    public function create()
+    {
+        return view('admin.keyword.create');
+    }
+
+    public function store(AdminRequestKeyword $request)
+    {
+        $data               = $request->except('_token');
+        $data['k_slug']     = Str::slug($request->k_name);
+        $data['created_at'] = Carbon::now();
+
+        $id = Keyword::insertGetId($data);
+
+        return redirect()->back();
     }
 
 }
