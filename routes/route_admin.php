@@ -93,6 +93,9 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::post('create','AdminKeywordController@store');
         Route::get('update/{id}','AdminKeywordController@edit')->name('admin.keyword.update');
         Route::post('update/{id}','AdminKeywordController@update');
+        Route::get('hot/{id}','AdminKeywordController@hot')->name('admin.keyword.hot');
+
+        Route::get('delete/{id}','AdminKeywordController@delete')->name('admin.keyword.delete');
 
     });
 
