@@ -36,5 +36,20 @@ class AdminKeywordController extends Controller
 
         return redirect()->back();
     }
+    public function edit($id)
+    {
+        $keyword = Keyword::find($id);
+        return view('admin.keyword.update', compact('keyword'));
+    }
 
+    public function update(AdminRequestKeyword $request, $id)
+    {
+        $keyword            = Keyword::find($id);
+        $data               = $request->except('_token');
+        $data['k_slug']     = Str::slug($request->k_name);
+        $data['updated_at'] = Carbon::now();
+
+        $keyword->update($data);
+        return redirect()->back();
+    }
 }
