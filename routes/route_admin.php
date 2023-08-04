@@ -75,7 +75,7 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('delete/{id}','AdminAttributeController@delete')->name('admin.attribute.delete');
 
     });
-    
+
     Route::group(['prefix' => 'producer'], function(){
         Route::get('','AdminProducerController@index')->name('admin.producer.index');
         Route::get('create','AdminProducerController@create')->name('admin.producer.create');
@@ -86,7 +86,11 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
         Route::get('delete/{id}','AdminProducerController@delete')->name('admin.producer.delete');
     });
-    
+
+    Route::group(['prefix' => 'keyword'], function(){
+        Route::get('','AdminKeywordController@index')->name('admin.keyword.index');
+
+    });
 
 
 
