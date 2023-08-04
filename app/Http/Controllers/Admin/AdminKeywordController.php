@@ -52,4 +52,21 @@ class AdminKeywordController extends Controller
         $keyword->update($data);
         return redirect()->back();
     }
+    public function hot($id)
+    {
+        $keyword = Keyword::find($id);
+
+        $keyword->k_hot = !$keyword->k_hot;
+        $keyword->save();
+
+        return redirect()->back();
+    }
+
+    public function delete($id)
+    {
+        $keyword = Keyword::find($id);
+        if ($keyword) $keyword->delete();
+
+        return redirect()->back();
+    }
 }
