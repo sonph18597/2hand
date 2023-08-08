@@ -52,4 +52,10 @@ Route::group(['namespace' => 'Frontend'], function() {
 Route::get('lien-he','ContactController@index')->name('get.contact');
 Route::get('convert-word-to-pdf', 'ContactController@convertWordToPdf')->name('convert.word.to.pdf');
 Route::post('lien-he','ContactController@store');
+Route::get('san-pham-ban-da-xem','PageStaticController@getProductView')->name('get.static.product_view');
+Route::get('ajax/san-pham-ban-da-xem','PageStaticController@getListProductView')->name('ajax_get.product_view');
+Route::get('huong-dan-mua-hang','PageStaticController@getShoppingGuide')->name('get.static.shopping_guide');
+Route::get('chinh-sach-doi-tra','PageStaticController@getReturnPolicy')->name('get.static.return_policy');
+Route::get('cham-soc-khach-hang','PageStaticController@getCustomerCare')->name('get.static.customer_care');
+
 include 'route_admin.php';
