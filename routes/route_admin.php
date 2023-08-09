@@ -104,7 +104,10 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('','DiscountCodeController@index')->name('admin.discount.code.index');
         Route::get('create','DiscountCodeController@create')->name('admin.discount.code.create');
         Route::post('create','DiscountCodeController@store');
-       
+        Route::get('update/{id}','DiscountCodeController@edit')->name('admin.discount.code.update');
+        Route::post('update/{id}','DiscountCodeController@update');
+
+        Route::get('delete/{id}','DiscountCodeController@delete')->name('admin.discount.code.delete');
     });
 
 
