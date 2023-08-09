@@ -272,4 +272,81 @@ class ShoppingCartController extends Controller
   
           return redirect($vnp_Url);
       }
+
+       // lu du lieu va tra ve phan thanh toan online qua vnpay
+    public function vnpayReturn(Request $request) {
+        if (session()->has('info_custormer') && $request->vnp_ResponseCode == '00') {
+            //
+            \DB::beginTransaction();
+            try {
+                $vnpayData = $request->all();
+                $data = session()->get('info_custormer');
+                $transactionID           = Transaction::insertGetId($data);
+
+                if ($transactionID) {
+                    $shopping = \Cart::content();
+                    //Mail::to($request->tst_email)->send(new TransactionSuccess($shopping));
+
+                    foreach ($shopping as $key => $item) {
+
+                        // Lưu chi tiết đơn hàng
+                        Order::insert([
+                            'od_transaction_id' => $transactionID,
+                            'od_product_id'     => $item->id,
+                            'od_sale'           => $item->options->sale,
+                            'od_qty'            => $item->qty,
+                            'od_price'          => $item->price,
+                            'od_size'          => $item->options->size,
+                            'od_color'          => $item->options->color,
+                            'od_gender'          => $item->options->gender,
+                        ]);
+
+                        //Tăng pay ( số lượt mua của sản phẩm dó)
+                        // \DB::table('products')
+                        //     ->where('id', $item->id)
+                        //     ->increment("pro_pay");
+                        $product = Product::find($item->id);
+                        $qty = $item->qty + $product->pro_pay;
+                        $product = $product->update(['pro_pay' => $qty]);
+                    }
+
+                    $dataPayment = [
+                        'p_transaction_id' => $transactionID,
+                        'p_transaction_code' => $vnpayData['vnp_TxnRef'],
+                        'p_user_id' => $data['tst_user_id'],
+                        'p_money' => $data['tst_total_money'],
+                        'p_note' => $vnpayData['vnp_OrderInfo'],
+                        'p_vnp_response_code' => $vnpayData['vnp_ResponseCode'],
+                        'p_code_vnpay' => $vnpayData['vnp_TransactionNo'],
+                        'p_code_bank' => $vnpayData['vnp_BankCode'],
+                        'p_time' => date('Y-m-d H:i', strtotime($vnpayData['vnp_PayDate'])),
+                    ];
+                    Payment::insert($dataPayment);
+                }
+
+                \Session::flash('toastr', [
+                    'type'    => 'success',
+                    'message' => 'Đơn hàng của bạn đã được lưu'
+                ]);
+                \Cart::destroy();
+                \DB::commit();
+                return view('frontend/pages/vnpay/vnpay_return', compact('vnpayData'));
+
+            } catch (\Exception $exception) {
+                \Session::flash('toastr', [
+                    'type'    => 'error',
+                    'message' => 'Đã xảy ra lỗi không thể thanh toán đơn hàng'
+                ]);
+                \DB::rollBack();
+                return redirect()->to('/');
+            }
+        } else {
+
+            \Session::flash('toastr', [
+                'type'    => 'error',
+                'message' => 'Đã xảy ra lỗi không thể thanh toán đơn hàng'
+            ]);
+            return redirect()->to('/');
+        }
+    }
 }
