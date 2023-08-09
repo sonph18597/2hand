@@ -47,6 +47,11 @@ Route::group(['namespace' => 'Frontend'], function() {
          Route::get('add/{id}','ShoppingCartController@add')->name('get.shopping.add');
          Route::get('delete/{id}','ShoppingCartController@delete')->name('get.shopping.delete');
          Route::get('update/{id}','ShoppingCartController@update')->name('ajax_get.shopping.update');
+         Route::get('theo-doi-don-hang','TrackOrderController@index')->name('get.track.transaction');
+         Route::post('pay','ShoppingCartController@postPay')->name('post.shopping.pay');
+         Route::get('update/cart/discount','ShoppingCartController@cartDiscount')->name('ajax_get.update.cart.discount');
+         Route::post('payment/online','ShoppingCartController@createPayment')->name('payment.online');
+         Route::get('vnpay/return', 'ShoppingCartController@vnpayReturn')->name('vnpay.return');
      });
 });
 Route::get('lien-he','ContactController@index')->name('get.contact');
