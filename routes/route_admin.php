@@ -112,11 +112,8 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
     Route::group(['prefix' => 'user'], function(){
         Route::get('','AdminUserController@index')->name('admin.user.index');
-
         Route::get('update/{id}','AdminUserController@edit')->name('admin.user.update');
         Route::post('update/{id}','AdminUserController@update');
-
-
         Route::get('delete/{id}','AdminUserController@delete')->name('admin.user.delete');
 
     });
