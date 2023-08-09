@@ -102,6 +102,8 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
     Route::group(['prefix' => 'discount-code'], function(){
         Route::get('','DiscountCodeController@index')->name('admin.discount.code.index');
+        Route::get('create','DiscountCodeController@create')->name('admin.discount.code.create');
+        Route::post('create','DiscountCodeController@store');
        
     });
 

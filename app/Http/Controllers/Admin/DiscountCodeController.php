@@ -28,7 +28,8 @@ class DiscountCodeController extends Controller
      */
     public function create()
     {
-       
+        //
+        return view('admin.discount_code.create');
     }
 
     /**
@@ -37,10 +38,26 @@ class DiscountCodeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(DiscountCodeRequest $request)
     {
-        
+        //
+        \DB::beginTransaction();
+        try {
+            $discountCode = new DiscountCode();
+            $discountCode->d_code = $request->d_code;
+            $discountCode->d_number_code = $request->d_number_code;
+            $discountCode->d_date_start = $request->d_date_start;
+            $discountCode->d_date_end = $request->d_date_end;
+            $discountCode->d_percentage = $request->d_percentage;
+            $discountCode->save();
+            \DB::commit();
+            return redirect()->route('admin.discount.code.index')->with('success', 'Thêm mới thành công');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
+
 
     /**
      * Show the form for editing the specified resource.
