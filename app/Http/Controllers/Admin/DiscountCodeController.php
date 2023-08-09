@@ -58,16 +58,17 @@ class DiscountCodeController extends Controller
         }
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-      
+        //
+        $discount = DiscountCode::find($id);
+        return view('admin.discount_code.update', compact('discount'));
     }
 
     /**
@@ -77,9 +78,24 @@ class DiscountCodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update()
+    public function update(Request $request, $id)
     {
-       
+        //
+        \DB::beginTransaction();
+        try {
+            $discountCode = DiscountCode::find($id);
+            $discountCode->d_code = $request->d_code;
+            $discountCode->d_number_code = $request->d_number_code;
+            $discountCode->d_date_start = $request->d_date_start;
+            $discountCode->d_date_end = $request->d_date_end;
+            $discountCode->d_percentage = $request->d_percentage;
+            $discountCode->save();
+            \DB::commit();
+            return redirect()->route('admin.discount.code.index')->with('success', 'Thêm mới thành công');
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi lưu dữ liệu');
+        }
     }
 
     /**
@@ -88,8 +104,14 @@ class DiscountCodeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete()
+    public function delete($id)
     {
-        
+        //
+        $discount = DiscountCode::find($id);
+        if (!$discount) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi xóa dữ liệu');
+        }
+        $discount->delete();
+        return view('admin.discount_code.update', compact('discount'));
     }
 }
