@@ -118,6 +118,12 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
     });
 
+    Route::group(['prefix' => 'article'], function(){
+        Route::get('','AdminArticleController@index')->name('admin.article.index');
+        Route::get('create','AdminArticleController@create')->name('admin.article.create');
+        Route::post('create','AdminArticleController@store');
 
+        
+    });
 
 });
