@@ -118,6 +118,11 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
     });
 
+    Route::group(['prefix' => 'comment'], function(){
+        Route::get('','AdminCommentController@index')->name('admin.comment.index');
+        Route::get('delete/{id}','AdminCommentController@delete')->name('admin.comment.delete');
+    });
+
     Route::group(['prefix' => 'article'], function(){
         Route::get('','AdminArticleController@index')->name('admin.article.index');
         Route::get('create','AdminArticleController@create')->name('admin.article.create');
