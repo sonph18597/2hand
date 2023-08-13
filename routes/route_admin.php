@@ -127,7 +127,13 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
         Route::get('','AdminArticleController@index')->name('admin.article.index');
         Route::get('create','AdminArticleController@create')->name('admin.article.create');
         Route::post('create','AdminArticleController@store');
+        
+        Route::get('update/{id}','AdminArticleController@edit')->name('admin.article.update');
+        Route::post('update/{id}','AdminArticleController@update');
 
+        Route::get('active/{id}','AdminArticleController@active')->name('admin.article.active');
+        Route::get('hot/{id}','AdminArticleController@hot')->name('admin.article.hot');
+        Route::get('delete/{id}','AdminArticleController@delete')->name('admin.article.delete');
         
     });
 
