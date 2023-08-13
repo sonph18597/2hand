@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdminRequestArticle;
 use App\Models\Article;
 use App\Models\Menu;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+
 class AdminArticleController extends Controller
 {
     public function index()
