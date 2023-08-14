@@ -34,6 +34,15 @@ Route::group(['namespace' => 'Auth','prefix' => 'account'], function(){
     Route::get('/{social}/callback', 'SocialAuthController@callback')->name('get.login.social_callback');
 });
 
+//Login Admin
+Route::group(['prefix' => 'admin-auth','namespace' => 'Admin\Auth'], function() {
+    Route::get('login','AdminLoginController@getLoginAdmin')->name('get.login.admin');
+    Route::post('login','AdminLoginController@postLoginAdmin');
+
+    Route::get('logout','AdminLoginController@getLogoutAdmin')->name('get.logout.admin');
+});
+
+
 Route::group(['namespace' => 'Frontend'], function() {
     Route::get('/','HomeController@index')->name('get.home');
     Route::get('san-pham','ProductController@index')->name('get.product.list');
