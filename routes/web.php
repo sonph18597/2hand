@@ -72,4 +72,7 @@ Route::get('huong-dan-mua-hang','PageStaticController@getShoppingGuide')->name('
 Route::get('chinh-sach-doi-tra','PageStaticController@getReturnPolicy')->name('get.static.return_policy');
 Route::get('cham-soc-khach-hang','PageStaticController@getCustomerCare')->name('get.static.customer_care');
 
+Route::get('ajax/load-document','PageStaticController@getDocumentAjax')->name('get_ajax.static.document');
+Route::get('demo/view-file','PageStaticController@getDemoViewFile');
+
 include 'route_admin.php';
