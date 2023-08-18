@@ -5,8 +5,10 @@ Route::group(['prefix' => 'laravel-filemanager','middleware' => 'check_admin_log
 });
 
 Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'check_admin_login'], function() {
+    Route::get('/','AdminStatisticalController@index')->name('get.admin.index');
 //        Route::get('','AdminController@index')->name('get.admin.index');
 
+    Route::get('statistical','AdminStatisticalController@index')->name('admin.statistical');
     Route::get('profile','AdminProfileController@index')->name('admin.profile.index');
     Route::post('profile/{id}','AdminProfileController@update')->name('admin.profile.update');
     /**
