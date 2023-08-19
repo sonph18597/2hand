@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminRatringController extends Controller
+class AdminRatingController extends Controller
 {
     public function index()
     {
