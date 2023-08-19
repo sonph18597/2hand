@@ -17,6 +17,15 @@ class AdminRatringController extends Controller
     }
     public function delete($id)
     {
-        
+        $rating = Rating::find(($id));
+        if ($rating) {
+            $product =  Product::find($rating->r_product_id);
+            $product->pro_review_total --;
+            $product->pro_review_star -= $rating->r_number;
+            $product->save();
+            $rating->delete();
+        }
+
+        return redirect()->back();
     }
 }
