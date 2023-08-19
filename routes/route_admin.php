@@ -141,4 +141,9 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
 
     Route::get('contact','AdminContactController@index')->name('admin.contact');
     Route::get('contact/delete/{id}','AdminContactController@delete')->name('admin.contact.delete');
+
+    Route::group(['prefix' => 'rating'], function(){
+        Route::get('','AdminRatingController@index')->name('admin.rating.index');
+        Route::get('delete/{id}','AdminRatingController@delete')->name('admin.rating.delete');
+    });
 });
