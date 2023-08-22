@@ -11,7 +11,11 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
     Route::get('statistical','AdminStatisticalController@index')->name('admin.statistical');
     Route::get('profile','AdminProfileController@index')->name('admin.profile.index');
     Route::post('profile/{id}','AdminProfileController@update')->name('admin.profile.update');
+
+    Route::get('profile','AdminProfileController@index')->name('admin.profile.index');
+    Route::post('profile/{id}','AdminProfileController@update')->name('admin.profile.update');
     /**
+     * 
      * Route danh mục sản phẩm
      **/
     Route::group(['prefix' => 'category'], function(){
@@ -145,5 +149,18 @@ Route::group(['prefix' => 'api-admin','namespace' => 'Admin','middleware' => 'ch
     Route::group(['prefix' => 'rating'], function(){
         Route::get('','AdminRatingController@index')->name('admin.rating.index');
         Route::get('delete/{id}','AdminRatingController@delete')->name('admin.rating.delete');
+    });
+
+    Route::group(['prefix' => 'menu'], function(){
+        Route::get('','AdminMenuController@index')->name('admin.menu.index');
+        Route::get('create','AdminMenuController@create')->name('admin.menu.create');
+        Route::post('create','AdminMenuController@store');
+
+        Route::get('update/{id}','AdminMenuController@edit')->name('admin.menu.update');
+        Route::post('update/{id}','AdminMenuController@update');
+
+        Route::get('active/{id}','AdminMenuController@active')->name('admin.menu.active');
+        Route::get('hot/{id}','AdminMenuController@hot')->name('admin.menu.hot');
+        Route::get('delete/{id}','AdminMenuController@delete')->name('admin.menu.delete');
     });
 });
