@@ -65,6 +65,11 @@ Route::group(['namespace' => 'Frontend'], function() {
          Route::get('vnpay/return', 'ShoppingCartController@vnpayReturn')->name('vnpay.return');
      });
 });
+
+Route::group(['prefix' => 'comment', 'middleware' => 'check_user_login'], function(){
+    Route::post('ajax-comment','CommentsController@store')->name('ajax_post.comment');
+});
+
 Route::get('lien-he','ContactController@index')->name('get.contact');
 Route::get('convert-word-to-pdf', 'ContactController@convertWordToPdf')->name('convert.word.to.pdf');
 Route::post('lien-he','ContactController@store');
