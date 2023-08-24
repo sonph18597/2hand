@@ -64,22 +64,28 @@ Route::group(['namespace' => 'Frontend'], function() {
          Route::post('payment/online','ShoppingCartController@createPayment')->name('payment.online');
          Route::get('vnpay/return', 'ShoppingCartController@vnpayReturn')->name('vnpay.return');
      });
+
+    Route::group(['prefix' => 'comment', 'middleware' => 'check_user_login'], function(){
+        Route::post('ajax-comment','CommentsController@store')->name('ajax_post.comment');
+    });
+    
+    Route::get('lien-he','ContactController@index')->name('get.contact');
+    Route::get('convert-word-to-pdf', 'ContactController@convertWordToPdf')->name('convert.word.to.pdf');
+    Route::post('lien-he','ContactController@store');
+    Route::get('san-pham-ban-da-xem','PageStaticController@getProductView')->name('get.static.product_view');
+    Route::get('ajax/san-pham-ban-da-xem','PageStaticController@getListProductView')->name('ajax_get.product_view');
+    Route::get('huong-dan-mua-hang','PageStaticController@getShoppingGuide')->name('get.static.shopping_guide');
+    Route::get('chinh-sach-doi-tra','PageStaticController@getReturnPolicy')->name('get.static.return_policy');
+    Route::get('cham-soc-khach-hang','PageStaticController@getCustomerCare')->name('get.static.customer_care');
+    
+    Route::get('ajax/load-document','PageStaticController@getDocumentAjax')->name('get_ajax.static.document');
+    Route::get('demo/view-file','PageStaticController@getDemoViewFile');
+
+    Route::group(['prefix' => 'document'], function(){
+        Route::get('/index','DocumentController@index')->name('get.document.index');
+        Route::get('/list','DocumentController@list')->name('get.document.list');
+        Route::get('/detail','DocumentController@detail')->name('get.document.detail');
+    });
 });
-
-Route::group(['prefix' => 'comment', 'middleware' => 'check_user_login'], function(){
-    Route::post('ajax-comment','CommentsController@store')->name('ajax_post.comment');
-});
-
-Route::get('lien-he','ContactController@index')->name('get.contact');
-Route::get('convert-word-to-pdf', 'ContactController@convertWordToPdf')->name('convert.word.to.pdf');
-Route::post('lien-he','ContactController@store');
-Route::get('san-pham-ban-da-xem','PageStaticController@getProductView')->name('get.static.product_view');
-Route::get('ajax/san-pham-ban-da-xem','PageStaticController@getListProductView')->name('ajax_get.product_view');
-Route::get('huong-dan-mua-hang','PageStaticController@getShoppingGuide')->name('get.static.shopping_guide');
-Route::get('chinh-sach-doi-tra','PageStaticController@getReturnPolicy')->name('get.static.return_policy');
-Route::get('cham-soc-khach-hang','PageStaticController@getCustomerCare')->name('get.static.customer_care');
-
-Route::get('ajax/load-document','PageStaticController@getDocumentAjax')->name('get_ajax.static.document');
-Route::get('demo/view-file','PageStaticController@getDemoViewFile');
 
 include 'route_admin.php';
