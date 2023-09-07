@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Requests\RequestLogin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -54,7 +55,10 @@ class LoginController extends Controller
             $this->logLogin();
             return redirect()->intended('/');
         }
-
+        Session::flash('toastr', [
+            'type'    => 'error',
+            'message' => 'sai tài khoản hoặc mật khẩu'
+        ]);
         return redirect()->back();
     }
 

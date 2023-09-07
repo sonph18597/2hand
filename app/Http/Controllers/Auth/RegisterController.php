@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use App\Mail\RegisterSuccess;
@@ -59,7 +60,7 @@ class RegisterController extends Controller
         $id = User::insertGetId($data);
 
         if ($id) {
-            \Session::flash('toastr', [
+            Session::flash('toastr', [
                 'type'    => 'success',
                 'message' => 'Đăng ký thành công'
             ]);
