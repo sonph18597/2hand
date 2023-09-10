@@ -1,9 +1,42 @@
-<mxfile host="app.diagrams.net" modified="2023-09-10T16:03:29.942Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" version="21.7.4" etag="fXk-cQ89CzERD-CLaTCl" type="github">
+<mxfile host="app.diagrams.net" modified="2023-09-10T16:06:06.576Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36" etag="zQW2OxUVWGo0UiO3Ns0h" version="21.7.4" type="github">
   <diagram name="Trang-1" id="gJk16FfoI9q-KJ3fi5oH">
-    <mxGraphModel>
+    <mxGraphModel dx="1050" dy="534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-1" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="400" y="230" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-2" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;" edge="1" source="0zMZG9dFgGb7xEJZ48zx-1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-3" value="Màn hình trang chủ" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="355" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-4" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;" edge="1" source="0zMZG9dFgGb7xEJZ48zx-3" parent="1" target="0zMZG9dFgGb7xEJZ48zx-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="0zMZG9dFgGb7xEJZ48zx-5" target="0zMZG9dFgGb7xEJZ48zx-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-5" value="Click vào 1 sàn phẩm" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="355" y="410" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-10" value="Di chuyển đến màn chi tiết sản phẩm" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fontColor=#000000;fillColor=#ffffc0;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="355" y="510" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-11" value="" style="edgeStyle=orthogonalEdgeStyle;html=1;verticalAlign=bottom;endArrow=open;endSize=8;strokeColor=#ff0000;rounded=0;" edge="1" source="0zMZG9dFgGb7xEJZ48zx-10" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="415" y="580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0zMZG9dFgGb7xEJZ48zx-14" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
+          <mxGeometry x="400" y="580" width="30" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
